@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh mục</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+     
+    .nav-item{
+      margin-left: 50px;
+      font-weight:700;
+      font-size: medium;
+      color: rgb(254, 254, 254);
+    }
+    .col-4 a {
+         text-decoration: none;
+        list-style-type: none;
+        line-height: 40px;
+        overflow: hidden;
+        color: white;
+        }
+        .newsletter {
+    background-color: #9aa1a7;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    max-width: 1060px;
+    margin: 50px auto;
+}
+
+.newsletter label {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.newsletter input[type="checkbox"] {
+    margin-right: 30px;
+}
+
+#email {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+button {
+    background-color: #f3c600;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #e0bf05;
+}
+    </style>
+</head>
+<body>
+    <div class="container border" style="background-color: rgb(255, 255, 255);">
+
+      <!--header-->
+      <div class="row">
+         <nav class="navbar navbar-expand-sm navbar-dark"  style="background-color: black; font-weight: bolder; ">
+           <div class="container-fluid">
+             <a class="navbar-brand me-5 ms-5" style=" font-size: x-large;" href="home.html"><img src="/img/iconnav/logoc.png" style="width: 50px;" alt="">MARKET BOOK</a>
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="mynavbar">
+               <ul class="navbar-nav me-5 ms-5">
+                 <li class="nav-item me-5">
+                 
+                     <form action="#" class="searchbox" style="width: 250px;">
+                        <input type="text" style="width: 350px;" class="text search-input" placeholder="Tìm kiếm sản phẩm...">
+                        <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                     </form>
+                  
+                 </li>
+                 
+                 <li class="ms-5 ms-5">
+                  <img src="/img/iconnav/timkiem.jpg" style="width: 30px;border-radius: 50%;" alt="">
+                 <img src="/img/iconnav/thongbaooo.png" style="width: 30px;border-radius: 50%;" alt="">
+                 
+                 
+                
+               </li>
+               <li>
+                  <button class="btn btn-outline-light" onclick="toggleCartModal()"><img src="/img/giohangmenu.jpg" width="30px" style="border-radius: 30px;" alt=""> Giỏ hàng (<span  id="cart-count">0</span>)</button>
+                </li>
+               </ul>
+               <form class="d-flex">
+                 <div id="noidung">
+                   <a href="login.html"><button type="button" class="btn btn-warning rounded-pill">ĐĂNG NHẬP</button></a>
+            
+             </div>
+              
+             </form>
+             </div>
+           </div>
+           </nav>
+       </div>
+ <!-- Modal Giỏ Hàng -->
+       <div class="row">
+         <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true" >
+            <div class="modal-dialog cart-modal">
+               <div class="modal-content" style="width: 800px;">
+                  <div class="modal-header">
+                        <h5 class="modal-title" id="cartModalLabel">Giỏ Hàng Của Bạn</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body" style="width: 800px;">
+                        <table class="table table-bordered">
+                           <thead>
+                              <tr>
+                                    <th>STT</th>
+                                    <th>Hình Ảnh</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Số Lượng</th>
+                                    <th>Giá</th>
+                                    <th>Tổng Giá</th>
+                                    <th>Hành Động</th>
+                              </tr>
+                           </thead>
+                           <tbody id="cart-items">
+                              <!-- Các sản phẩm sẽ được chèn vào bằng JavaScript -->
+                           </tbody>
+                        </table>
+                        <h4 class="text-end">Tổng Cộng: <span id="cart-total">0₫</span></h4>
+                  </div>
+                  <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-success" onclick="proceedToCheckout()">Thanh Toán</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+       </div>
+      <!--menu2-->
+      <div class="row">
+         <nav class="navbar navbar-expand-sm bg-warning navbar-brand">
+           <div class="container-fluid">
+             <a class="navbar-brand" href="#">  </a>
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="collapsibleNavbar">
+               <ul class="navbar-nav ms-5">
+                   
+                 <li class="nav-item ">
+                   <a class="nav-link " href="./home.html" style="color: white;" >TRANG CHỦ</a>
+                 </li>
+                 <li class="nav-item dropdown">
+                   <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" style="color: white;">DANH SÁCH SẢN PHẨM</a>
+                   <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="./danhmuc.html" >SÁCH NƯỚC NGOÀI</a></li>
+                     <li><a class="dropdown-item" href="./danhmuc.html" >SÁCH TRONG NƯỚC</a></li>
+                     <li><a class="dropdown-item" href="./danhmuc.html" >SÁCH KINH TẾ</a></li>
+                   </ul>
+                 </li>
+                 <li class="nav-item">
+                   <a class="nav-link" href="./gioithieu.html" style="color: white; ">GIỚI THIỆU</a>
+               
+                 </li>
+                 <li class="nav-item">
+                   <a class="nav-link" href="./Checkout.html" role="button" style="color: white;">GIỎ HÀNG</a>
+                   
+                 </li>
+                 <li class="nav-item">
+                   <a class="nav-link" href="./lienhe.html" role="button" style="color: white;">LIÊN HỆ</a>
+                   
+                 </li>
+                 <li class="nav-item">
+                  <a class="nav-link" href="./sitemap.html" role="button" style="color: white;">SITEMAP</a>
+                  
+                </li>
+               </ul>
+             </div>
+           </div>
+         </nav>
+       </div>
+        <div class="row">
+             <!-- Nav tabs -->
+            <div class="container text-center mt-5">
+                <div class="btn-group" role="group">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" data-bs-toggle="tab" href="#home">Sách Nước Ngoài</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-bs-toggle="tab" href="#menu1">Sách Trong Nước</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-bs-toggle="tab" href="#menu2">Sách Kinh Tế</a>
+                        </li>
+                      </ul>
+                </div>
+                <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home" class="container tab-pane active"><br>
+      <h3>Sách Nước Ngoài</h3>
+      <p>Với hàng ngàn tựa sách từ khắp nơi trên thế giới, trang web cung cấp nhiều thể loại từ tiểu thuyết, phi hư cấu đến sách học thuật. Độc giả có thể dễ dàng tìm thấy các tác phẩm nổi tiếng, sách hiếm và những ấn phẩm mới nhất của các tác giả quốc tế. Giao diện thân thiện, dễ sử dụng, cùng dịch vụ giao hàng toàn cầu giúp bạn tiếp cận kho tàng kiến thức và giải trí từ mọi nền văn hóa một cách nhanh chóng và thuận tiện.</p>
+      <div class="iq-card-body"> 
+          <!-- Danh Sách Sản Phẩm -->
+
+          <div class="iq-card-body">  
+            <div class="row">
+               <div class="container mt-5">
+                  <div class="row" id="product-list">
+                      <!-- Danh sách sản phẩm sẽ được chèn vào bằng JavaScript -->
+                  </div>
+               </div>
+               
+            </div>
+         </div>
+
+        <div class="row" style="text-align: left;">
+           <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/img01.jpg" alt=""></a>
+                         
+                       </div>
+                       <div class="col-6 ms-1" >
+                          <div class="mb-2">
+                             <h6 class="mb-1 ">Bí Quyết Làm Giàu Của Napoleon Hill (Tái Bản 2019)</h6>
+                             <p class="font-size-13 line-height mb-1">Napoleon Hill</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-1 text-warning " style="font-size: small;">
+                                   
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                 
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>79.000 đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                           <button class="add-to-cart" data-title="Bí Quyết Làm Giàu Của Napoleon Hill" data-price="79000 ₫" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                             
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/04.jpg" alt=""></a>
+                          <div class="view-book">
+                            
+                          </div>
+                       </div>
+                       <div class="col-6 ms-1">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Kinh tế học VIKING</h6>
+                             <p class="font-size-13 line-height mb-1">Fritz Wold</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                 
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(205, 204, 196);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>79.000 đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           
+           <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/12.jpg" alt=""></a>
+                          <div class="view-book">
+                            
+                          </div>
+                       </div>
+                       <div class="col-6 ms-1">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Moneyo Power </h6>
+                             <p class="font-size-13 line-height mb-1">Ichae Semos</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                  
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>99.000đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/06.jpg" alt=""></a>
+                          <div class="view-book">
+                             
+                          </div>
+                       </div>
+                       <div class="col-6 ms-1">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Find The Wave Book</h6>
+                             <p class="font-size-13 line-height mb-1">Fidel Martin</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                 
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>79.000đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/07.jpg" alt=""></a>
+                          <div class="view-book">
+                            
+                          </div>
+                       </div>
+                       <div class="col-6 ms-1">
+                          <div class="mb-2">
+                             <h6 class="mb-1">See the More Story</h6>
+                             <p class="font-size-13 line-height mb-1">Jules Boutin</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                 
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                            
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>79.000đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                          
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/08.jpg" alt=""></a>
+                          <div class="view-book">
+                           
+                          </div>
+                       </div>
+                       <div class="col-6 ms-1">
+                          <div class="mb-2">
+                             <h6 class="mb-1">The Wikde Book</h6>
+                             <p class="font-size-13 line-height mb-1">Kusti Franti</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                  
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(200, 198, 186);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>89.390đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           
+        </div>
+     </div>
+    </div>
+    <div id="menu1" class="container tab-pane fade"><br>
+      <h3>Sách Trong Nước</h3>
+      <p>Một nền tảng chuyên cung cấp các đầu sách trong nước của Việt Nam, từ những tác phẩm văn học kinh điển đến sách kỹ năng, giáo dục và nghiên cứu. Với mục tiêu tôn vinh văn hóa đọc và lan tỏa tri thức Việt, trang web mang đến cho độc giả nhiều sự lựa chọn phong phú và đa dạng. Giao diện dễ sử dụng, thông tin chi tiết về từng quyển sách và các chương trình khuyến mãi hấp dẫn giúp người đọc tiếp cận sách dễ dàng hơn. Ngoài ra, dịch vụ giao hàng nhanh chóng trên toàn quốc cũng là điểm cộng lớn của trang web.</p>
+      <div class="iq-card-body">  
+        <div class="row">
+           <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/sachtrongnuoc/01.jpg" alt=""></a>
+                         
+                       </div>
+                       <div class="col-6" style="text-align:left;">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Nghệ thuật Đàm phám (Tái Bản 2019)</h6>
+                             <p class="font-size-13 line-height mb-1">Napoleon Hill</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-1 text-warning " style="font-size: small;">
+                                   
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                 
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>79.000 đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                           <button class="add-to-cart" data-title="Bí Quyết Làm Giàu Của Napoleon Hill" data-price="79000 ₫" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                             
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/02.jpg" alt=""></a>
+                          <div class="view-book">
+                            
+                          </div>
+                       </div>
+                       <div class="col-6" style="text-align: left;">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Người bán hàng vĩ đại</h6>
+                             <p class="font-size-13 line-height mb-1">Fritz Wold</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                 
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(205, 204, 196);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>79.000 đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           
+           <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/05.jpg" alt=""></a>
+                          <div class="view-book">
+                            
+                          </div>
+                       </div>
+                       <div class="col-6" style="text-align: left;">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Cha Giàu Cha Nghèo</h6>
+                             <p class="font-size-13 line-height mb-1">Ichae Semos</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                  
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>39.000đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/sachtrongnuoc/04.jpg" alt=""></a>
+                          <div class="view-book">
+                             
+                          </div>
+                       </div>
+                       <div class="col-6" style="text-align: left;">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Các nền kinh tế vận hành</h6>
+                             <p class="font-size-13 line-height mb-1">Liên Hoàng</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                 
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>79.000đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/07.jpg" alt=""></a>
+                          <div class="view-book">
+                            
+                          </div>
+                       </div>
+                       <div class="col-6" style="text-align: left;">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Năng lượng của đồng tiền</h6>
+                             <p class="font-size-13 line-height mb-1">Jules Boutin</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                 
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                            
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>79.000đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                          
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/08.jpg" alt=""></a>
+                          <div class="view-book">
+                           
+                          </div>
+                       </div>
+                       <div class="col-6" style="text-align: left;">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Du ngoạn trên thuyền</h6>
+                             <p class="font-size-13 line-height mb-1">Kusti Franti</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                  
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(200, 198, 186);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>89.390đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent mb-lg-0">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/09.jpg" alt=""></a>
+                          <div class="view-book">
+                            
+                          </div>
+                       </div>
+                       <div class="col-6" style="text-align: left;">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Cuộc giao tiếp với nhà báo</h6>
+                             <p class="font-size-13 line-height mb-1">Argele Intili</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                  
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>79.000đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent mb-md-0 mb-lg-0">
+                 <div class="iq-card-body p-0">
+                    <div class="d-flex align-items-center">
+                       <div class="col-6 p-0 position-relative image-overlap-shadow">
+                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/10.jpg" alt=""></a>
+                          <div class="view-book">
+                            
+                          </div>
+                       </div>
+                       <div class="col-6" style="text-align: left;">
+                          <div class="mb-2">
+                             <h6 class="mb-1">Cuộc sống nhỏ bé của tôi</h6>
+                             <p class="font-size-13 line-height mb-1">Henry Jurk</p>
+                             <div class="d-block line-height">
+                                <span class="font-size-11 text-warning">
+                                 
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                </span>                                             
+                             </div>
+                          </div>
+                          <div class="price d-flex align-items-center">
+                             <h6><b>99.000đ</b></h6>
+                          </div>
+                          <div class="iq-product-action">
+                            <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                          </div>                                      
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           
+        </div>
+     </div>
+    </div>
+    <div id="menu2" class="container tab-pane fade"><br>
+      <h3>Sách Kinh Tế</h3>
+      <p>Chúng tôi cung cấp một kho tàng sách kinh tế đa dạng, từ các cuốn sách kinh điển về kinh tế học cơ bản đến những nghiên cứu chuyên sâu về xu hướng kinh tế toàn cầu. Với mục tiêu mang lại kiến thức hữu ích cho học giả, nhà kinh doanh, và những ai đam mê lĩnh vực kinh tế, chúng tôi cập nhật liên tục các ấn phẩm mới nhất từ các tác giả hàng đầu. Ngoài ra, trang web còn cung cấp đánh giá sách chi tiết, giúp người đọc dễ dàng chọn lựa tài liệu phù hợp để phát triển hiểu biết và kỹ năng trong nền kinh tế ngày càng phức tạp.</p>
+      <div class="iq-card-body">  
+         <div class="row" style="text-align: left;">
+            <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+               <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                  <div class="iq-card-body p-0">
+                     <div class="d-flex align-items-center">
+                        <div class="col-6 p-0 position-relative image-overlap-shadow">
+                           <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/sachkinhte/1.webp" alt=""></a>
+                          
+                        </div>
+                        <div class="col-6 ms-1" >
+                           <div class="mb-2">
+                              <h6 class="mb-1 ">Chính sách tiền tệ thế kỷ 21</h6>
+                              <p class="font-size-13 line-height mb-1">Mai Võ</p>
+                              <div class="d-block line-height">
+                                 <span class="font-size-1 text-warning " style="font-size: small;">
+                                    
+                                    <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                    <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                  
+                                    <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                    <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                 </span>                                             
+                              </div>
+                           </div>
+                           <div class="price d-flex align-items-center">
+                              <h6><b>179.000 đ</b></h6>
+                           </div>
+                           <div class="iq-product-action">
+                              <button class="add-to-cart" data-title="Bí Quyết Làm Giàu Của Napoleon Hill" data-price="79000 ₫" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                              
+                           </div>                                      
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+               <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                  <div class="iq-card-body p-0">
+                     <div class="d-flex align-items-center">
+                        <div class="col-6 p-0 position-relative image-overlap-shadow">
+                           <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/sachkinhte/2.webp" alt=""></a>
+                           <div class="view-book">
+                             
+                           </div>
+                        </div>
+                        <div class="col-6 ms-1">
+                           <div class="mb-2">
+                              <h6 class="mb-1">33 chiến lược của chiến tranh</h6>
+                              <p class="font-size-13 line-height mb-1">Fritz Wold</p>
+                              <div class="d-block line-height">
+                                 <span class="font-size-11 text-warning">
+                                  
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(205, 204, 196);">star</i>
+                                   <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                 </span>                                             
+                              </div>
+                           </div>
+                           <div class="price d-flex align-items-center">
+                              <h6><b>279.000 đ</b></h6>
+                           </div>
+                           <div class="iq-product-action">
+                             <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                           </div>                                      
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+               <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                  <div class="iq-card-body p-0">
+                     <div class="d-flex align-items-center">
+                        <div class="col-6 p-0 position-relative image-overlap-shadow">
+                           <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/sachkinhte/3.webp" alt=""></a>
+                           <div class="view-book">
+                             
+                           </div>
+                        </div>
+                        <div class="col-6 ms-1">
+                           <div class="mb-2">
+                              <h6 class="mb-1">Làm chủ Bussiness Analyst </h6>
+                              <p class="font-size-13 line-height mb-1">Ichae Semos</p>
+                              <div class="d-block line-height">
+                                 <span class="font-size-11 text-warning">
+                                   
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                 </span>                                             
+                              </div>
+                           </div>
+                           <div class="price d-flex align-items-center">
+                              <h6><b>99.000đ</b></h6>
+                           </div>
+                           <div class="iq-product-action">
+                             <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                           </div>                                      
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+               <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                  <div class="iq-card-body p-0">
+                     <div class="d-flex align-items-center">
+                        <div class="col-6 p-0 position-relative image-overlap-shadow">
+                           <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/sachkinhte/4.webp" alt=""></a>
+                           <div class="view-book">
+                              
+                           </div>
+                        </div>
+                        <div class="col-6 ms-1">
+                           <div class="mb-2">
+                              <h6 class="mb-1">Kinh tế học hài hước</h6>
+                              <p class="font-size-13 line-height mb-1">Fidel Martin</p>
+                              <div class="d-block line-height">
+                                 <span class="font-size-11 text-warning">
+                                  
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                 </span>                                             
+                              </div>
+                           </div>
+                           <div class="price d-flex align-items-center">
+                              <h6><b>79.000đ</b></h6>
+                           </div>
+                           <div class="iq-product-action">
+                             <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                           </div>                                      
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+               <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                  <div class="iq-card-body p-0">
+                     <div class="d-flex align-items-center">
+                        <div class="col-6 p-0 position-relative image-overlap-shadow">
+                           <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/sachkinhte/5.webp" alt=""></a>
+                           <div class="view-book">
+                             
+                           </div>
+                        </div>
+                        <div class="col-6 ms-1">
+                           <div class="mb-2">
+                              <h6 class="mb-1">Thời đại AI</h6>
+                              <p class="font-size-13 line-height mb-1">Jules Boutin</p>
+                              <div class="d-block line-height">
+                                 <span class="font-size-11 text-warning">
+                                  
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                 </span>                                             
+                              </div>
+                             
+                           </div>
+                           <div class="price d-flex align-items-center">
+                              <h6><b>79.000đ</b></h6>
+                           </div>
+                           <div class="iq-product-action">
+                           
+                             <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                           </div>                                      
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 p-3">
+               <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                  <div class="iq-card-body p-0">
+                     <div class="d-flex align-items-center">
+                        <div class="col-6 p-0 position-relative image-overlap-shadow">
+                           <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/sachkinhte/6.webp" alt=""></a>
+                           <div class="view-book">
+                            
+                           </div>
+                        </div>
+                        <div class="col-6 ms-1">
+                           <div class="mb-2">
+                              <h6 class="mb-1">Nền kinh tế tăng tưởng hay sụp đổ?</h6>
+                              <p class="font-size-13 line-height mb-1">Kusti Franti</p>
+                              <div class="d-block line-height">
+                                 <span class="font-size-11 text-warning">
+                                   
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                   <i class="material-icons" style="color: rgb(200, 198, 186);">star</i>
+                                   <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                 </span>                                             
+                              </div>
+                           </div>
+                           <div class="price d-flex align-items-center">
+                              <h6><b>89.390đ</b></h6>
+                           </div>
+                           <div class="iq-product-action">
+                             <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                           </div>                                      
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+     </div>
+    </div>
+  </div>
+              </div>
+          
+  
+</div>
+        <div class="row bg-light border pt-3">
+          <div class="col-lg-12">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-header d-flex justify-content-between align-items-center position-relative mb-5 ">
+                  <div class="iq-header-title ">
+                     <h4 class="card-title bg-warning " style="border-radius: 30px;width: 250px; height: 50px; padding-top: 10px; padding-left: 50px;">Gợi ý cho bạn</h4>
+                  </div>
+                  <div class="iq-card-header-toolbar d-flex align-items-center">                              
+                     <a href="/html/danhmuc.html" class="btn btn-sm btn-warning view-more">Xem Thêm</a>
+                  </div>
+               </div> 
+               <div class="iq-card-body">  
+                  <div class="row">
+                     <div class="col-sm-6 col-md-4 col-lg-3 pb-5">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                           <div class="iq-card-body p-0">
+                              <div class="d-flex align-items-center">
+                                 <div class="col-6 p-0 position-relative image-overlap-shadow">
+                                    <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/img01.jpg" alt=""></a>
+                                   
+                                 </div>
+                                 <div class="col-6">
+                                    <div class="mb-2">
+                                       <h6 class="mb-1">Bí Quyết Làm Giàu Của Napoleon Hill (Tái Bản 2019)</h6>
+                                       <p class="font-size-13 line-height mb-1">Napoleon Hill</p>
+                                       <div class="d-block line-height">
+                                          <span class="font-size-1 text-warning " style="font-size: small;">
+                                             
+                                             <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                             <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                           
+                                             <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                             <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                          </span>                                             
+                                       </div>
+                                    </div>
+                                    <div class="price d-flex align-items-center">
+                                       <h6><b>79.000 đ</b></h6>
+                                    </div>
+                                    <div class="iq-product-action">
+                                       <button class="add-to-cart" data-title="Bí Quyết Làm Giàu Của Napoleon Hill" data-price="79000 ₫" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                                       
+                                    </div>                                      
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-md-4 col-lg-3 pb-5">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                           <div class="iq-card-body p-0">
+                              <div class="d-flex align-items-center">
+                                 <div class="col-6 p-0 position-relative image-overlap-shadow">
+                                    <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/02.jpg" alt=""></a>
+                                    <div class="view-book">
+                                      
+                                    </div>
+                                 </div>
+                                 <div class="col-6">
+                                    <div class="mb-2">
+                                       <h6 class="mb-1">Trên Đỉnh Phố Wall(Tái bản 2019)</h6>
+                                       <p class="font-size-13 line-height mb-1">Fritz Wold</p>
+                                       <div class="d-block line-height">
+                                          <span class="font-size-11 text-warning">
+                                           
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(205, 204, 196);">star</i>
+                                            <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                          </span>                                             
+                                       </div>
+                                    </div>
+                                    <div class="price d-flex align-items-center">
+                                       <h6><b>79.000 đ</b></h6>
+                                    </div>
+                                    <div class="iq-product-action">
+                                      <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                                    </div>                                      
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-md-4 col-lg-3 pb-5">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                           <div class="iq-card-body p-0">
+                              <div class="d-flex align-items-center">
+                                 <div class="col-6 p-0 position-relative image-overlap-shadow">
+                                    <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/05.jpg" alt=""></a>
+                                    <div class="view-book">
+                                      
+                                    </div>
+                                 </div>
+                                 <div class="col-6">
+                                    <div class="mb-2">
+                                       <h6 class="mb-1">Cha Giàu Cha Nghèo</h6>
+                                       <p class="font-size-13 line-height mb-1">Ichae Semos</p>
+                                       <div class="d-block line-height">
+                                          <span class="font-size-11 text-warning">
+                                            
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                          </span>                                             
+                                       </div>
+                                    </div>
+                                    <div class="price d-flex align-items-center">
+                                       <h6><b>39.000đ</b></h6>
+                                    </div>
+                                    <div class="iq-product-action">
+                                      <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                                    </div>                                      
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-md-4 col-lg-3 pb-5">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                           <div class="iq-card-body p-0">
+                              <div class="d-flex align-items-center">
+                                 <div class="col-6 p-0 position-relative image-overlap-shadow">
+                                    <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/06.jpg" alt=""></a>
+                                    <div class="view-book">
+                                       
+                                    </div>
+                                 </div>
+                                 <div class="col-6">
+                                    <div class="mb-2">
+                                       <h6 class="mb-1">Find The Wave Book</h6>
+                                       <p class="font-size-13 line-height mb-1">Fidel Martin</p>
+                                       <div class="d-block line-height">
+                                          <span class="font-size-11 text-warning">
+                                           
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                          </span>                                             
+                                       </div>
+                                    </div>
+                                    <div class="price d-flex align-items-center">
+                                       <h6><b>79.000đ</b></h6>
+                                    </div>
+                                    <div class="iq-product-action">
+                                      <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                                    </div>                                      
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-md-4 col-lg-3 pb-5">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                           <div class="iq-card-body p-0">
+                              <div class="d-flex align-items-center">
+                                 <div class="col-6 p-0 position-relative image-overlap-shadow">
+                                    <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/07.jpg" alt=""></a>
+                                    <div class="view-book">
+                                      
+                                    </div>
+                                 </div>
+                                 <div class="col-6">
+                                    <div class="mb-2">
+                                       <h6 class="mb-1">See the More Story</h6>
+                                       <p class="font-size-13 line-height mb-1">Jules Boutin</p>
+                                       <div class="d-block line-height">
+                                          <span class="font-size-11 text-warning">
+                                           
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                          </span>                                             
+                                       </div>
+                                      
+                                    </div>
+                                    <div class="price d-flex align-items-center">
+                                       <h6><b>79.000đ</b></h6>
+                                    </div>
+                                    <div class="iq-product-action">
+                                    
+                                      <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                                    </div>                                      
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-md-4 col-lg-3 pb-5">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
+                           <div class="iq-card-body p-0">
+                              <div class="d-flex align-items-center">
+                                 <div class="col-6 p-0 position-relative image-overlap-shadow">
+                                    <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/08.jpg" alt=""></a>
+                                    <div class="view-book">
+                                     
+                                    </div>
+                                 </div>
+                                 <div class="col-6">
+                                    <div class="mb-2">
+                                       <h6 class="mb-1">The Wikde Book</h6>
+                                       <p class="font-size-13 line-height mb-1">Kusti Franti</p>
+                                       <div class="d-block line-height">
+                                          <span class="font-size-11 text-warning">
+                                            
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(200, 198, 186);">star</i>
+                                            <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                          </span>                                             
+                                       </div>
+                                    </div>
+                                    <div class="price d-flex align-items-center">
+                                       <h6><b>89.390đ</b></h6>
+                                    </div>
+                                    <div class="iq-product-action">
+                                      <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                                    </div>                                      
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-md-4 col-lg-3 pb-5">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent mb-lg-0">
+                           <div class="iq-card-body p-0">
+                              <div class="d-flex align-items-center">
+                                 <div class="col-6 p-0 position-relative image-overlap-shadow">
+                                    <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/09.jpg" alt=""></a>
+                                    <div class="view-book">
+                                      
+                                    </div>
+                                 </div>
+                                 <div class="col-6">
+                                    <div class="mb-2">
+                                       <h6 class="mb-1">Conversion Erik Routley</h6>
+                                       <p class="font-size-13 line-height mb-1">Argele Intili</p>
+                                       <div class="d-block line-height">
+                                          <span class="font-size-11 text-warning">
+                                            
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                          </span>                                             
+                                       </div>
+                                    </div>
+                                    <div class="price d-flex align-items-center">
+                                       <h6><b>79.000đ</b></h6>
+                                    </div>
+                                    <div class="iq-product-action">
+                                      <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                                    </div>                                      
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-md-4 col-lg-3 pb-5">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent mb-md-0 mb-lg-0">
+                           <div class="iq-card-body p-0">
+                              <div class="d-flex align-items-center">
+                                 <div class="col-6 p-0 position-relative image-overlap-shadow">
+                                    <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/10.jpg" alt=""></a>
+                                    <div class="view-book">
+                                      
+                                    </div>
+                                 </div>
+                                 <div class="col-6">
+                                    <div class="mb-2">
+                                       <h6 class="mb-1">The Leo Dominica</h6>
+                                       <p class="font-size-13 line-height mb-1">Henry Jurk</p>
+                                       <div class="d-block line-height">
+                                          <span class="font-size-11 text-warning">
+                                           
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                            <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                          </span>                                             
+                                       </div>
+                                    </div>
+                                    <div class="price d-flex align-items-center">
+                                       <h6><b>99.000đ</b></h6>
+                                    </div>
+                                    <div class="iq-product-action">
+                                      <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button>
+                                    </div>                                      
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+        </div>
+        <div class="row">
+         <div class="newsletter">
+           <label for="email">
+     
+               <span>ĐĂNG KÝ NHẬN BẢN TIN</span>
+           </label>
+           <input type="email" id="email" placeholder="Nhập địa chỉ email của bạn">
+           <button type="submit">Đăng ký</button>
+       </div>
+     </div>
+        <div class="row">
+          <div class="col-lg-6 mt-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-header d-flex justify-content-between mb-0">
+                  <div class="iq-header-title">
+                     <h4 class="card-title bg-warning" style="border-radius: 30px;width: 250px; height: 50px; padding-top: 10px; padding-left: 50px;">Bán chạy nhất</h4>
+                  </div>
+                  <div class="iq-card-header-toolbar d-flex align-items-center">
+                     <div class="dropdown">
+                        <span class="dropdown-toggle p-0 text-body" id="dropdownMenuButton2" data-toggle="dropdown">
+                        Trong ngày<i class="ri-arrow-down-s-fill"></i>
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-right shadow-none" aria-labelledby="dropdownMenuButton2">
+                           <a class="dropdown-item" href="#">Ngày</a>
+                           <a class="dropdown-item" href="#">Tuần</a>
+                           <a class="dropdown-item" href="#">Tháng</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="iq-card-body">
+                  <div class="row align-items-center">
+                     <div class="col-sm-5 pr-0">
+                        <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/browse-books/1.jpg" alt=""></a>
+                     </div>
+                     <div class="col-sm-7 mt-3 mt-sm-0">
+                        <h4 class="mb-2">Payback Time </br> Ngày Đòi Nợ</h4>
+                        <p class="mb-2">Tác Giả : Phill Town</p>
+                        <div class="mb-2 d-block">
+                           <span class="font-size-12 text-warning">
+                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                            <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                            <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                           </span>
+                        </div>
+                        <span class="text-dark mb-3 d-block">NGÀY ĐÒI NỢ – Payback Time 
+                        “Một cuộc sống hạnh phúc được bắt đầu từ những quyết định đầu tư khôn ngoan”</span>
+                        <button type="submit" class="btn btn-warning learn-more">Xem thêm</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-6">
+          <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+             <div class="iq-card-header d-flex justify-content-between mb-0">
+                <div class="iq-header-title">
+                   <h4 class="card-title bg-warning mt-3" style="border-radius: 30px;width: 250px; height: 50px; padding-top: 10px; padding-left: 50px;">Nhà Sách MB</h4>
+                </div>
+                <div class="iq-card-header-toolbar d-flex align-items-center">
+                   <div class="dropdown">
+                      <span class="dropdown-toggle p-0 text-body" id="dropdownMenuButton3" data-toggle="dropdown">
+                      Ngày<i class="ri-arrow-down-s-fill"></i>
+                      </span>
+                      <div class="dropdown-menu dropdown-menu-right shadow-none" aria-labelledby="dropdownMenuButton3">
+                         <a class="dropdown-item" href="#">Tuần</a>
+                         <a class="dropdown-item" href="#">Theo Tháng</a>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="iq-card-body">
+                <ul class="list-inline row mb-0 align-items-center iq-scrollable-block">
+                   <li class="col-sm-6 d-flex mb-3 align-items-center">
+                      <div class="icon iq-icon-box mr-3">
+                         <a href="./book-page.html"><img class="img-fluid avatar-60 " style="width: 100px; height: 100px; border-radius: 50px;" src="/img/browse-books/11.jpg" alt=""></a>
+                      </div>
+                      <div class="mt-1">
+                         <h6>Kinh Tế</h6>
+                         <p class="mb-0 text-primary">Số lượng: <span class="text-body">281</span></p>
+                      </div>
+                   </li>
+                   <li class="col-sm-6 d-flex mb-3 align-items-center">
+                      <div class="icon iq-icon-box mr-3">
+                         <a href="./book-page.html"><img class="img-fluid avatar-60 " style="width: 100px;height: 100px; border-radius: 50px;" src="/img/browse-books/12.jpg" alt=""></a>
+                      </div>
+                      <div class="mt-1">
+                         <h6>Văn Học</h6>
+                         <p class="mb-0 text-primary">Số lượng: <span class="text-body">432</span></p>
+                      </div>
+                   </li>
+                   <li class="col-sm-6 d-flex mb-3 align-items-center">
+                      <div class="icon iq-icon-box mr-3">
+                         <a href="./book-page.html"><img class="img-fluid avatar-60 " style="width: 100px;height: 100px; border-radius: 50px;" src="/img/browse-books/02.jpg" alt=""></a>
+                      </div>
+                      <div class="mt-1">
+                         <h6>Tâm Lý - Kĩ Năng Sống</h6>
+                         <p class="mb-0 text-primary">Số lượng: <span class="text-body">5471</span></p>
+                      </div>
+                   </li>
+                   <li class="col-sm-6 d-flex mb-3 align-items-center">
+                      <div class="icon iq-icon-box mr-3">
+                         <a href="./book-page.html"><img class="img-fluid avatar-60 " style="width: 100px;height: 100px; border-radius: 50px;" src="/img/browse-books/06.jpg" alt=""></a>
+                      </div>
+                      <div class="mt-1">
+                         <h6>Sách Giáo Khoa</h6>
+                         <p class="mb-0 text-primary">Số lượng: <span class="text-body">264</span></p>
+                      </div>
+                   </li>
+                   <li class="col-sm-6 d-flex mb-3 align-items-center">
+                      <div class="icon iq-icon-box mr-3">
+                         <a href="./book-page.html"><img class="img-fluid avatar-60 " style="width: 100px;height: 100px; border-radius: 50px;" src="/img/browse-books/08.jpg" alt=""></a>
+                      </div>
+                      <div class="mt-1">
+                         <h6>Chính trị – pháp luật</h6>
+                         <p class="mb-0 text-primary">Số lượng: <span class="text-body">817</span></p>
+                      </div>
+                   </li>
+                   <li class="col-sm-6 d-flex mb-3 align-items-center">
+                      <div class="icon iq-icon-box mr-3">
+                         <a href="./book-page.html"><img class="img-fluid avatar-60 " style="width: 100px;height: 100px; border-radius: 50px;" src="/img/browse-books/03.jpg" alt=""></a>
+                      </div>
+                      <div class="mt-1">
+                         <h6>Khoa Học - Công Nghệ </h6>
+                         <p class="mb-0 text-primary">Số lượng: <span class="text-body">219</span></p>
+                      </div>
+                   </li>
+
+
+                </ul>
+             </div>
+          </div>
+       </div>
+        </div>
+        <!--footer-->
+        <div class="row border" style="background-color: black; color: white;">
+               
+         <div class="col-4 border">
+         <div class="row"><img src="/img/iconnav/logoc.png" alt="" style="width: 150px;"></div>
+         <div class="row" style="color: white;">
+            <p>Lầu 5, 333 Hai Bà Trưng Quận 5 TP HCM <br>
+               Công Ty Cổ Phần Phát Hành Sách TP HCM - MARKETBOOK <br>
+               62 Lê Lợi, Quận 1, TP. HCM, Việt Nam</p>
+               <p>MARKETBOOK nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ Thống MARKETBOOK trên toàn quốc.</p>
+         </div>
+         <div class="row">
+            <div class="col-2 m-1"><img src="/img/icon/09.png" style="width: 50px;border-radius: 50px;" alt=""></div>
+            <div class="col-2 m-1"> <img src="/img/icon/08.png"style="width: 50px;border-radius: 50px;" alt=""></div>
+            <div class="col-2 m-1"> <img src="/img/icon/12.png"style="width: 50px;border-radius: 50px;" alt=""></div>
+            <div class="col-2 m-1"><img src="/img/icon/10.png"style="width: 50px;border-radius: 50px;" alt=""></div>
+            <div class="col-2 m-1"><img src="/img/icon/11.png"style="width: 50px;border-radius: 50px;" alt=""></div>
+            
+            
+            
+            
+            
+         </div>
+         </div>
+         <div class="col-8">
+         <div class="row" style="color: white;">
+            <div class="col-4 mt-4" style="color: white;">
+               <h3><a href="./home.html">TRANG CHỦ</a></h3>
+               <ul style="list-style-type: none;">
+                  <li><a href="./gioithieu.html">Giới thiệu</a></li>
+                  <li><a href="./danhmuc.html">Sản phẩm</a></li>
+                  <li><a href="./lienhe.html">Liên hệ</a></li>
+                  <li><a href="./Checkout.html">Giỏ hàng</a></li>
+                  <li><a href="./sitemap.html">Sitemap</a></li>
+               </ul>
+            </div>
+            <div class="col-4 mt-4" style="color: white;">
+            
+               <h3><a href="./danhmuc.html">DANH MỤC SẢN PHẨM</a></h3>
+               <ul style="list-style-type: none;">
+                  <li><a href="./danhmuc.html">Sách nước ngoài</a></li>
+                  <li><a href="./danhmuc.html">Sách trong nước</a></li>
+                  <li><a href="./danhmuc.html">Sách kinh tế</a></li>
+                  <li><a href="./book-page.html">Chi tiết sách</a></li>
+                  <li><a href="./Checkout.html">Giỏ hàng</a></li>
+               </ul>
+            </div>
+            <div class="col-4 mt-4" style="color: white;">
+               <h3><a href="./login.html">TÀI KHOẢN</a></h3>
+               <ul style="list-style-type: none;">
+                  <li><a href="./login.html" >Đăng nhập</a></li>
+                  <li><a href="./signup.html">Đăng ký</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="row mb-3" style="color: white;">
+            <h3>LIÊN HỆ</h3>
+         </div>
+         <div class="row" style="color: white;">
+            <div class="col-4">
+               <img src="/img/iconnav/diachi.jpg" alt="" style="border-radius: 50%; width: 30px;border: 1px solid aliceblue;"> 62 Lê Lợi, Q.1, TP. HCM</div>
+            <div class="col-4">
+               <img src="/img/iconnav/email.png" alt="" style="border-radius: 50%; width: 30px;">marketbook@gmail.com
+            </div>
+            <div class="col-4">
+               <img src="/img/iconnav/phone.jpg" alt="" style="border-radius: 50%; border: 1px solid aliceblue; width: 30px;"> 1900 7890
+            </div>
+         </div>
+         </div>
+         
+         </div>
+         <div class="row ps-5" style="background-color: rgb(17, 17, 17); color: white; text-align: center;">
+         Giấy chứng nhận Đăng ký Kinh doanh số 03332117 do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 20/12/2024.
+         </div>
+    </div>
+     <!-- JavaScript Logic for Cart -->
+     <script>
+      // Hàm lưu giỏ hàng và điều hướng đến trang checkout.html
+function proceedToCheckout() {
+ const cart = loadCart(); // Giả sử loadCart() trả về mảng giỏ hàng từ localStorage
+ localStorage.setItem('cart', JSON.stringify(cart)); // Lưu giỏ hàng vào localStorage
+ window.location.href = 'Checkout.html'; // Điều hướng đến trang thanh toán
+}
+      // Danh sách sản phẩm mẫu
+      const products = [
+          {id: 1, name: "Bí Quyết Làm Giàu", price: 79000, image: "/img/browse-books/05.jpg"},
+          {id: 2, name: "Người Bán Hàng Vĩ Đại", price: 89000, image: "/img/browse-books/01.jpg"},
+          {id: 3, name: "Cha Giàu Cha Nghèo", price: 39000, image: "/img/browse-books/02.jpg"},
+          {id: 4, name: "Cha Giàu Cha Nghèo", price: 139000, image: "/img/browse-books/03.jpg"},
+          {id: 5, name: "Người Bán Hàng Vĩ Đại", price: 279000, image: "/img/browse-books/04.jpg"},
+          {id: 6, name: "Cha Giàu Cha Nghèo", price: 319000, image: "/img/browse-books/06.jpg"},
+          {id: 7, name: "Người Bán Hàng Vĩ Đại", price: 179000, image: "/img/browse-books/07.jpg"},
+          {id: 8, name: "Cha Giàu Cha Nghèo", price: 69000, image: "/img/browse-books/08.jpg"},
+          {id: 9, name: "Người Bán Hàng Vĩ Đại", price: 179000, image: "/img/browse-books/09.jpg"},
+          {id: 10, name: "Cha Giàu Cha Nghèo", price: 69000, image: "/img/browse-books/10.jpg"},
+          {id: 11, name: "Người Bán Hàng Vĩ Đại", price: 99000, image: "/img/browse-books/12.jpg"},
+          {id: 12, name: "Cha Giàu Cha Nghèo", price: 59000, image: "/img/browse-books/11.jpg"}
+      ];
+  
+      function saveCart(cart) {
+          localStorage.setItem('cart', JSON.stringify(cart));
+      }
+  
+      function loadCart() {
+          return JSON.parse(localStorage.getItem('cart')) || [];
+      }
+  
+      function addToCart(productId) {
+          const cart = loadCart();
+          const product = products.find(p => p.id === productId);
+          const item = cart.find(i => i.id === productId);
+  
+          if (item) {
+              item.quantity++;
+          } else {
+              cart.push({...product, quantity: 1});
+          }
+  
+          saveCart(cart);
+          updateCartCount();
+      }
+  
+      function updateCartCount() {
+          const cart = loadCart();
+          const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+          document.getElementById('cart-count').textContent = count;
+      }
+      function renderStars(rating) {
+     let stars = '';
+     for (let i = 0; i < 5; i++) {
+         if (i < rating) {
+             stars += '<i class="bi bi-star-fill star-rating"></i>'; // Ngôi sao đầy
+         } else {
+             stars += '<i class="bi bi-star star-rating"></i>'; // Ngôi sao rỗng
+         }
+     }
+     return stars;
+ }
+  
+      function renderProducts() {
+          const productList = document.getElementById('product-list');
+          productList.innerHTML = '';
+          products.forEach(product => {
+              const productHtml = `<div class="col-md-2 mb-3">
+                  <div class="card">
+                      <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                      <div class="card-body">
+                          <h5 class="card-title">${product.name}</h5>
+                           <p class="star-rating">${renderStars(product.rating)}</p>
+                          <p class="card-text">Giá: ${product.price}₫</p>
+                          <button class="btn btn-warning" onclick="addToCart(${product.id})">Thêm vào giỏ</button>
+                      </div>
+                  </div>
+              </div>`;
+              productList.insertAdjacentHTML('beforeend', productHtml);
+          });
+      }
+  
+      function toggleCartModal() {
+          renderCart();
+          const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+          cartModal.show();
+      }
+  
+      function renderCart() {
+          const cart = loadCart();
+          const cartItems = document.getElementById('cart-items');
+          const cartTotal = document.getElementById('cart-total');
+          cartItems.innerHTML = '';
+          let total = 0;
+  
+          cart.forEach((item, index) => {
+              const itemTotal = item.price * item.quantity;
+              total += itemTotal;
+  
+              const itemHtml = `<tr>
+                  <td>${index + 1}</td>
+                  <td><img src="${item.image}" alt="${item.name}" width="50"></td>
+                  <td>${item.name}</td>
+                  <td>
+                      <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(${item.id}, -1)">-</button>
+                      <span class="px-2">${item.quantity}</span>
+                      <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(${item.id}, 1)">+</button>
+                  </td>
+                  <td>${item.price}₫</td>
+                  <td>${itemTotal}₫</td>
+                  <td><button class="btn btn-danger btn-sm" onclick="removeItem(${item.id})">Xóa</button></td>
+              </tr>`;
+  
+              cartItems.insertAdjacentHTML('beforeend', itemHtml);
+          });
+  
+          cartTotal.textContent = total + '₫';
+      }
+  
+      function updateQuantity(productId, change) {
+          const cart = loadCart();
+          const item = cart.find(i => i.id === productId);
+          if (item) {
+              item.quantity += change;
+              if (item.quantity <= 0) {
+                  removeItem(productId);
+              } else {
+                  saveCart(cart);
+                  renderCart();
+              }
+          }
+      }
+  
+      function removeItem(productId) {
+          let cart = loadCart();
+          cart = cart.filter(item => item.id !== productId);
+          saveCart(cart);
+          renderCart();
+      }
+  
+      document.addEventListener('DOMContentLoaded', () => {
+          renderProducts();
+          updateCartCount();
+      });
+  </script>
+</body>
+</html>

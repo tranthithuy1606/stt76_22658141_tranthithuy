@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Thông tin sách</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+      
+        <script src="/js/jquery-3.7.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <style>
+         
+        .nav-item{
+          margin-left: 50px;
+          font-weight:700;
+          font-size: medium;
+          color: rgb(254, 254, 254);
+        }
+        .col-4 a {
+         text-decoration: none;
+        list-style-type: none;
+        line-height: 40px;
+        overflow: hidden;
+        color: white;
+        }
+        .newsletter {
+    background-color: #9aa1a7;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    max-width: 1060px;
+    margin: 50px auto;
+}
+
+.newsletter label {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.newsletter input[type="checkbox"] {
+    margin-right: 30px;
+}
+
+#email {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    flex-grow: 1;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+button {
+    background-color: #f3c600;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #e0bf05;
+}
+        </style>
+    </head>
+   <body>
+      <div class="container border" style="background-color: rgb(255, 255, 255);">
+      <!-- Wrapper Start -->
+      <div class="wrapper">
+            <!--header-->
+      <div class="row">
+         <nav class="navbar navbar-expand-sm navbar-dark"  style="background-color: black; font-weight: bolder; ">
+           <div class="container-fluid">
+             <a class="navbar-brand me-5 ms-5" style=" font-size: x-large;" href="home.html"><img src="/img/iconnav/logoc.png" style="width: 50px;" alt="">MARKET BOOK</a>
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="mynavbar">
+               <ul class="navbar-nav me-5 ms-5">
+                 <li class="nav-item me-5">
+                 
+                     <form action="#" class="searchbox" style="width: 250px;">
+                        <input type="text" style="width: 350px;" class="text search-input" placeholder="Tìm kiếm sản phẩm...">
+                        <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                     </form>
+                  
+                 </li>
+                 
+                 <li class="ms-5 ms-5">
+                  <img src="/img/iconnav/timkiem.jpg" style="width: 30px;border-radius: 50%;" alt="">
+                 <img src="/img/iconnav/thongbaooo.png" style="width: 30px;border-radius: 50%;" alt="">
+                 <li>
+                  <button class="btn btn-outline-light" onclick="toggleCartModal()"><img src="/img/giohangmenu.jpg" width="30px" style="border-radius: 30px;" alt=""> Giỏ hàng (<span  id="cart-count">0</span>)</button>
+                </li>              
+                
+               </li>
+               </ul>
+               <form class="d-flex">
+                 <div id="noidung">
+                   <a href="login.html"><button type="button" class="btn btn-warning rounded-pill">ĐĂNG NHẬP</button></a>
+            
+             </div>
+               <!-- The Modal -->
+              
+             </form>
+             </div>
+           </div>
+           </nav>
+       </div>
+        <!-- Modal Giỏ Hàng -->
+        <div class="row">
+         <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true" >
+            <div class="modal-dialog cart-modal">
+               <div class="modal-content" style="width: 800px;">
+                  <div class="modal-header">
+                        <h5 class="modal-title" id="cartModalLabel">Giỏ Hàng Của Bạn</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body" style="width: 800px;">
+                        <table class="table table-bordered">
+                           <thead>
+                              <tr>
+                                    <th>STT</th>
+                                    <th>Hình Ảnh</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Số Lượng</th>
+                                    <th>Giá</th>
+                                    <th>Tổng Giá</th>
+                                    <th>Hành Động</th>
+                              </tr>
+                           </thead>
+                           <tbody id="cart-items">
+                              <!-- Các sản phẩm sẽ được chèn vào bằng JavaScript -->
+                           </tbody>
+                        </table>
+                        <h4 class="text-end">Tổng Cộng: <span id="cart-total">0₫</span></h4>
+                  </div>
+                  <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-success" onclick="proceedToCheckout()">Thanh Toán</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+       </div>
+     <!-- menu  -->
+    
+            <div class="row">
+              <nav class="navbar navbar-expand-sm bg-warning navbar-brand">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ms-5">
+                        
+                      <li class="nav-item ">
+                        <a class="nav-link " href="./home.html" style="color: white;" >TRANG CHỦ</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="./danhmuc.html" role="button" data-bs-toggle="dropdown" style="color: white;">DANH SÁCH SẢN PHẨM</a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="./danhmuc.html" >SÁCH NƯỚC NGOÀI</a></li>
+                          <li><a class="dropdown-item" href="./danhmuc.html" >SÁCH TRONG NƯỚC</a></li>
+                          <li><a class="dropdown-item" href="./danhmuc.html" >SÁCH KINH TẾ</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./gioithieu.html" style="color: white; ">GIỚI THIỆU</a>
+                    
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./Checkout.html" role="button" style="color: white;">GIỎ HÀNG</a>
+                        
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./lienhe.html" role="button" style="color: white;">LIÊN HỆ</a>
+                        
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./sitemap.html" role="button" style="color: white;">SITEMAP</a>
+                        
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+         <!-- Page Content  -->
+         <div id="content-page" class="content-page">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                        <div class="iq-card-header d-flex justify-content-between align-items-center">
+                           <h4 class="card-title mb-0"></h4>
+                        </div>
+                        <div class="iq-card-body pb-0">
+                           <div class="description-contens align-items-top row">
+                              <div class="col-md-5">
+                                 <div class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height">
+                                    <div class="iq-card-body p-0">
+                                       <div class="row align-items-center">
+                                          
+                                          <div class="col-8 m-5 me-5">
+                                             <ul id="description-slider" class="list-inline p-0 m-0  d-flex align-items-center">
+            
+                                                <li>
+                                                   <a href="javascript:void(0);">
+                                                   <img src="/img/browse-books/02.jpg" class="img-fluid w-100 rounded me-5" alt="">
+                                                   </a>
+                                                </li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6 m-5">
+                                 <div class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height">
+                                    <div class="iq-card-body p-0">
+                                       <h3 class="mb-3">Người bán hàng vĩ đại nhất thế giới</h3>
+                                       <div class="price d-flex align-items-center font-weight-500 mb-2">
+                                          <span class="font-size-30 pr-2" style="color: rgb(116, 96, 1); font-size: 1.5em;">79.000 ₫</span>
+                                         
+                                       </div>
+                                       <div class="mb-3 d-block">
+                                          <span class="font-size-20 text-warning">
+                                             <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                             <i class="material-icons" style="color: rgb(242, 218, 0);">star</i>
+                                             <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                             <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                             <i class="material-icons" style="color: rgb(192, 190, 175);">star</i>
+                                          </span>
+                                       </div>
+                                       <span class="text-dark mb-4 pb-4 iq-border-bottom d-block">"Trong chứng khoán và thị trường tài chính, dám tham gia đầu tư cũng là một thành công tâm lý ban đầu. Dù vậy, 95% nhà đầu tư Việt Nam thuộc nhóm nhà đầu tư nhỏ lẻ với vốn kiến thức tài chính vô cùng hạn chế. Họ tham gia vào thị trường chứng khoán với 100% ý chí và sự quyết tâm chiến thắng thị trường, nhưng thật không may mắn kết cục cuối cùng của họ luôn là sự thất bại và mất tiền.</span>
+                                       <div class="text-primary mb-4">Tác giả: <span class="text-body">HappyLive</span></div>
+                                       <div class="mb-4 d-flex align-items-center">                                       
+                                          <button class="add-to-cart" data-title="Book 1" data-price="60830" style="background:none; margin-left: 50px;"><img src="/img/giohangmenu.jpg" style="width: 30px; border-radius: 30px;" alt=""></button> <br>
+                                          <a href="book-pdf.html" class="btn btn-warning view-more mr-1 me-2">Mua ngay</a>
+                                          <a href="book-pdf.html" class="btn btn-warning view-more mr-1 me-2">Thêm vào danh sách yêu thích</a>
+                                       </div>
+                                       
+                                       <div class="iq-social d-flex align-items-center">
+                                          <h5 class="mr-2">Chia sẻ:</h5>
+                                          <ul class="list-inline d-flex p-0 mb-0 align-items-center">
+                                             <li>
+                                                <a href="#" class="avatar-40 mr-2 facebook"> <i class="material-icons" >facebook</i></a>
+                                             </li>
+                                            
+                                             <li>
+                                                <a href="#" class="avatar-40 mr-2 whatapps"><i class="material-icons" >whatapps</i></a>
+                                             </li>
+                                       
+                                          </ul>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-12">
+                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                        <div class="iq-card-header d-flex justify-content-between align-items-center position-relative">
+                           <div class="iq-header-title mb-3 p-3 bg-warning" >
+                              <h4 class="card-title mb-0" >Sản phẩm tương tự</h4>
+                           </div>
+                           <div class="iq-card-header-toolbar d-flex align-items-center">
+                              <a href="./danhmuc.html" class="btn btn-sm btn-warning view-more" style="position: relative; right: 100px;">Xem thêm</a>
+                           </div>
+                        </div>
+                        <div class="iq-card-body single-similar-contens">
+                           <ul id="single-similar-slider" class="list-inline p-0 mb-0 row">
+                              <li class="col-md-4">
+                                 <div class="row align-items-center">
+                                    <div class="col-5">
+                                       <div class="position-relative image-overlap-shadow">
+                                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/similar-books/01.jpg" alt=""></a>
+                                          <div class="view-book">
+                                             <a href="book-page.html" class="btn btn-sm btn-white">Xem sách</a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-7 pl-0">
+                                       <h6 class="mb-2">Nhà Đầu Tư Thông Minh...</h6>
+                                       <p class="text-body">Dịch giả : Lê Quốc Phương</p>
+                                       <a href="#" class="text-dark" tabindex="-1">Đọc ngay<i class="ri-arrow-right-s-line"></i></a>
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="col-md-4">
+                                 <div class="row align-items-center">
+                                    <div class="col-5">
+                                       <div class="position-relative image-overlap-shadow">
+                                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/similar-books/02.jpg" alt=""></a>
+                                          <div class="view-book">
+                                             <a href="book-page.html" class="btn btn-sm btn-white">Xem sách</a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-7 pl-0">
+                                       <h6 class="mb-2">Nhà Lãnh Đạo Không Chức Danh</h6>
+                                       <p class="text-body">Tác giả : NXB Trẻ</p>
+                                       <a href="#" class="text-dark" tabindex="-1">Đọc ngay<i class="ri-arrow-right-s-line"></i></a>
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="col-md-4">
+                                 <div class="row align-items-center">
+                                    <div class="col-5">
+                                       <div class="position-relative image-overlap-shadow">
+                                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/similar-books/03.jpg" alt=""></a>
+                                          <div class="view-book">
+                                             <a href="book-page.html" class="btn btn-sm btn-white">Xem sách</a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-7 pl-0">
+                                       <h6 class="mb-2">Nghệ Thuật đầu tư Dhandho...</h6>
+                                       <p class="text-body">Tác giả : Bill Emia</p>
+                                       <a href="#" class="text-dark" tabindex="-1">Đọc ngay<i class="ri-arrow-right-s-line"></i></a>
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="col-md-4">
+                                 <div class="row align-items-center">
+                                    <div class="col-5">
+                                       <div class="position-relative image-overlap-shadow">
+                                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/similar-books/04.jpg" alt=""></a>
+                                          <div class="view-book">
+                                             <a href="book-page.html" class="btn btn-sm btn-white">Xem sách</a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-7 pl-0">
+                                       <h6 class="mb-2">Từ Tốt Đến Vĩ Đại.</h6>
+                                       <p class="text-body">Tác giả : Hal Appeno</p>
+                                       <a href="#" class="text-dark" tabindex="-1">Đọc ngay<i class="ri-arrow-right-s-line"></i></a>
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="col-md-4">
+                                 <div class="row align-items-center">
+                                    <div class="col-5">
+                                       <div class="position-relative image-overlap-shadow">
+                                          <a href="./book-page.html"><img class="img-fluid rounded w-100" src="/img/similar-books/05.jpg" alt=""></a>
+                                          <div class="view-book">
+                                             <a href="book-page.html" class="btn btn-sm btn-white">Xem sách</a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-7 pl-0">
+                                       <h6 class="mb-2">D. Trump - Đừng Bao Giờ Bỏ Cuộc..</h6>
+                                       <p class="text-body">Tác giả : Zack Lee</p>
+                                       <a href="#" class="text-dark" tabindex="-1">Đọc ngay<i class="ri-arrow-right-s-line"></i></a>
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                 
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="newsletter">
+           <label for="email">
+     
+               <span>ĐĂNG KÝ NHẬN BẢN TIN</span>
+           </label>
+           <input type="email" id="email" placeholder="Nhập địa chỉ email của bạn">
+           <button type="submit">Đăng ký</button>
+       </div>
+     </div>
+      <!-- Wrapper END -->
+      <!--footer-->
+       <!--footer-->
+       <div class="row border" style="background-color: black; color: white;">
+               
+         <div class="col-4 border">
+         <div class="row"><img src="/img/iconnav/logoc.png" alt="" style="width: 150px;"></div>
+         <div class="row" style="color: white;">
+            <p>Lầu 5, 333 Hai Bà Trưng Quận 5 TP HCM <br>
+               Công Ty Cổ Phần Phát Hành Sách TP HCM - MARKETBOOK <br>
+               62 Lê Lợi, Quận 1, TP. HCM, Việt Nam</p>
+               <p>MARKETBOOK nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ trợ đặt mua và nhận hàng trực tiếp tại văn phòng cũng như tất cả Hệ Thống MARKETBOOK trên toàn quốc.</p>
+         </div>
+         <div class="row">
+            <div class="col-2 m-1"><img src="/img/icon/09.png" style="width: 50px;border-radius: 50px;" alt=""></div>
+            <div class="col-2 m-1"> <img src="/img/icon/08.png"style="width: 50px;border-radius: 50px;" alt=""></div>
+            <div class="col-2 m-1"> <img src="/img/icon/12.png"style="width: 50px;border-radius: 50px;" alt=""></div>
+            <div class="col-2 m-1"><img src="/img/icon/10.png"style="width: 50px;border-radius: 50px;" alt=""></div>
+            <div class="col-2 m-1"><img src="/img/icon/11.png"style="width: 50px;border-radius: 50px;" alt=""></div>
+            
+            
+            
+            
+            
+         </div>
+         </div>
+         <div class="col-8">
+         <div class="row" style="color: white;">
+            <div class="col-4 mt-4" style="color: white;">
+               <h3><a href="./home.html">TRANG CHỦ</a></h3>
+               <ul style="list-style-type: none;">
+                  <li><a href="./gioithieu.html">Giới thiệu</a></li>
+                  <li><a href="./danhmuc.html">Sản phẩm</a></li>
+                  <li><a href="./lienhe.html">Liên hệ</a></li>
+                  <li><a href="./Checkout.html">Giỏ hàng</a></li>
+                  <li><a href="./sitemap.html">Sitemap</a></li>
+               </ul>
+            </div>
+            <div class="col-4 mt-4" style="color: white;">
+            
+               <h3><a href="./danhmuc.html">DANH MỤC SẢN PHẨM</a></h3>
+               <ul style="list-style-type: none;">
+                  <li><a href="./danhmuc.html">Sách nước ngoài</a></li>
+                  <li><a href="./danhmuc.html">Sách trong nước</a></li>
+                  <li><a href="./danhmuc.html">Sách kinh tế</a></li>
+                  <li><a href="./book-page.html">Chi tiết sách</a></li>
+                  <li><a href="./Checkout.html">Giỏ hàng</a></li>
+               </ul>
+            </div>
+            <div class="col-4 mt-4" style="color: white;">
+               <h3><a href="./login.html">TÀI KHOẢN</a></h3>
+               <ul style="list-style-type: none;">
+                  <li><a href="./login.html" >Đăng nhập</a></li>
+                  <li><a href="./signup.html">Đăng ký</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="row mb-3" style="color: white;">
+            <h3>LIÊN HỆ</h3>
+         </div>
+         <div class="row" style="color: white;">
+            <div class="col-4">
+               <img src="/img/iconnav/diachi.jpg" alt="" style="border-radius: 50%; width: 30px;border: 1px solid aliceblue;"> 62 Lê Lợi, Q.1, TP. HCM</div>
+            <div class="col-4">
+               <img src="/img/iconnav/email.png" alt="" style="border-radius: 50%; width: 30px;">marketbook@gmail.com
+            </div>
+            <div class="col-4">
+               <img src="/img/iconnav/phone.jpg" alt="" style="border-radius: 50%; border: 1px solid aliceblue; width: 30px;"> 1900 7890
+            </div>
+         </div>
+         </div>
+         
+         </div>
+         <div class="row ps-5" style="background-color: rgb(17, 17, 17); color: white; text-align: center;">
+         Giấy chứng nhận Đăng ký Kinh doanh số 03332117 do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 20/12/2024.
+         </div>
+      
+      </div>
+       <!-- JavaScript Logic for Cart -->
+       <script>
+         // Hàm lưu giỏ hàng và điều hướng đến trang checkout.html
+function proceedToCheckout() {
+    const cart = loadCart(); // Giả sử loadCart() trả về mảng giỏ hàng từ localStorage
+    localStorage.setItem('cart', JSON.stringify(cart)); // Lưu giỏ hàng vào localStorage
+    window.location.href = 'Checkout.html'; // Điều hướng đến trang thanh toán
+}
+         // Danh sách sản phẩm mẫu
+         const products = [
+             {id: 1, name: "Bí Quyết Làm Giàu", price: 79000, image: "/img/browse-books/05.jpg"},
+             {id: 2, name: "Người Bán Hàng Vĩ Đại", price: 89000, image: "/img/browse-books/01.jpg"},
+             {id: 3, name: "Cha Giàu Cha Nghèo", price: 39000, image: "/img/browse-books/02.jpg"},
+             {id: 4, name: "Cha Giàu Cha Nghèo", price: 139000, image: "/img/browse-books/03.jpg"},
+             {id: 5, name: "Người Bán Hàng Vĩ Đại", price: 279000, image: "/img/browse-books/04.jpg"},
+             {id: 6, name: "Cha Giàu Cha Nghèo", price: 319000, image: "/img/browse-books/06.jpg"},
+             {id: 7, name: "Người Bán Hàng Vĩ Đại", price: 179000, image: "/img/browse-books/07.jpg"},
+             {id: 8, name: "Cha Giàu Cha Nghèo", price: 69000, image: "/img/browse-books/08.jpg"},
+             {id: 9, name: "Người Bán Hàng Vĩ Đại", price: 179000, image: "/img/browse-books/09.jpg"},
+             {id: 10, name: "Cha Giàu Cha Nghèo", price: 69000, image: "/img/browse-books/10.jpg"},
+             {id: 11, name: "Người Bán Hàng Vĩ Đại", price: 99000, image: "/img/browse-books/12.jpg"},
+             {id: 12, name: "Cha Giàu Cha Nghèo", price: 59000, image: "/img/browse-books/11.jpg"}
+         ];
+     
+         function saveCart(cart) {
+             localStorage.setItem('cart', JSON.stringify(cart));
+         }
+     
+         function loadCart() {
+             return JSON.parse(localStorage.getItem('cart')) || [];
+         }
+     
+         function addToCart(productId) {
+             const cart = loadCart();
+             const product = products.find(p => p.id === productId);
+             const item = cart.find(i => i.id === productId);
+     
+             if (item) {
+                 item.quantity++;
+             } else {
+                 cart.push({...product, quantity: 1});
+             }
+     
+             saveCart(cart);
+             updateCartCount();
+         }
+     
+         function updateCartCount() {
+             const cart = loadCart();
+             const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+             document.getElementById('cart-count').textContent = count;
+         }
+         function renderStars(rating) {
+        let stars = '';
+        for (let i = 0; i < 5; i++) {
+            if (i < rating) {
+                stars += '<i class="bi bi-star-fill star-rating"></i>'; // Ngôi sao đầy
+            } else {
+                stars += '<i class="bi bi-star star-rating"></i>'; // Ngôi sao rỗng
+            }
+        }
+        return stars;
+    }
+     
+         function renderProducts() {
+             const productList = document.getElementById('product-list');
+             productList.innerHTML = '';
+             products.forEach(product => {
+                 const productHtml = `<div class="col-md-2 mb-3">
+                     <div class="card">
+                         <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                         <div class="card-body">
+                             <h5 class="card-title">${product.name}</h5>
+                              <p class="star-rating">${renderStars(product.rating)}</p>
+                             <p class="card-text">Giá: ${product.price}₫</p>
+                             <button class="btn btn-warning" onclick="addToCart(${product.id})">Thêm vào giỏ</button>
+                         </div>
+                     </div>
+                 </div>`;
+                 productList.insertAdjacentHTML('beforeend', productHtml);
+             });
+         }
+     
+         function toggleCartModal() {
+             renderCart();
+             const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+             cartModal.show();
+         }
+     
+         function renderCart() {
+             const cart = loadCart();
+             const cartItems = document.getElementById('cart-items');
+             const cartTotal = document.getElementById('cart-total');
+             cartItems.innerHTML = '';
+             let total = 0;
+     
+             cart.forEach((item, index) => {
+                 const itemTotal = item.price * item.quantity;
+                 total += itemTotal;
+     
+                 const itemHtml = `<tr>
+                     <td>${index + 1}</td>
+                     <td><img src="${item.image}" alt="${item.name}" width="50"></td>
+                     <td>${item.name}</td>
+                     <td>
+                         <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(${item.id}, -1)">-</button>
+                         <span class="px-2">${item.quantity}</span>
+                         <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(${item.id}, 1)">+</button>
+                     </td>
+                     <td>${item.price}₫</td>
+                     <td>${itemTotal}₫</td>
+                     <td><button class="btn btn-danger btn-sm" onclick="removeItem(${item.id})">Xóa</button></td>
+                 </tr>`;
+     
+                 cartItems.insertAdjacentHTML('beforeend', itemHtml);
+             });
+     
+             cartTotal.textContent = total + '₫';
+         }
+     
+         function updateQuantity(productId, change) {
+             const cart = loadCart();
+             const item = cart.find(i => i.id === productId);
+             if (item) {
+                 item.quantity += change;
+                 if (item.quantity <= 0) {
+                     removeItem(productId);
+                 } else {
+                     saveCart(cart);
+                     renderCart();
+                 }
+             }
+         }
+     
+         function removeItem(productId) {
+             let cart = loadCart();
+             cart = cart.filter(item => item.id !== productId);
+             saveCart(cart);
+             renderCart();
+         }
+     
+         document.addEventListener('DOMContentLoaded', () => {
+             renderProducts();
+             updateCartCount();
+         });
+     </script>
+
+   </body>
+</html>
